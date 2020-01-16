@@ -85,6 +85,29 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'My article an stuff...',
+    date: 'like Jan 15th, 2020',
+    firstParagraph: `this this this this this this this this this this this this this this this this this
+    this this this this this this this this this this this this this this this this this
+    this this this this this this this this this this this this this this this this this
+    this this this this this this this this this this this this this this this this this
+    this this this this this this this this this this this this this this this this this`,
+
+    secondParagraph: ` guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy 
+    guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy 
+    guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy 
+    guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy 
+    guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy guy `,
+
+    thirdParagraph: `codes codes codes codes codes codes codes codes codes codes codes codes codes codes codes
+    codes codes codes codes codes codes codes codes codes codes codes codes codes codes codes
+    codes codes codes codes codes codes codes codes codes codes codes codes codes codes codes
+    codes codes codes codes codes codes codes codes codes codes codes codes codes codes codes
+    codes codes codes codes codes codes codes codes codes codes codes codes codes codes codes
+    codes codes codes codes codes codes codes codes codes codes codes codes codes codes codes`
   }
 ];
 
@@ -112,3 +135,272 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+let x =3
+function createArticle(obj){
+
+        let article = document.createElement("div")
+        let h2 = document.createElement("h2")
+        let p = document.createElement("p")
+        let span = document.createElement("span")
+        let spanRemove = document.createElement("span")
+        h2.textContent= obj.title
+        p.textContent= obj.date
+
+
+        article.appendChild(h2)
+        article.appendChild(p)
+        article.innerHTML+=(`<p>${obj.firstParagraph}</p>`)
+        article.innerHTML+=(`<p>${obj.secondParagraph}</p>`)
+        article.innerHTML+=(`<p>${obj.thirdParagraph}</p>`)
+        article.appendChild(span)
+        article.appendChild(spanRemove)
+
+
+        article.classList.add("article")
+        h2.classList.add("date")
+        span.classList.add("expandButton")
+        spanRemove.classList.add("expandButton")
+
+       
+        span.innerHTML='&#128235;Click to Expand'
+        spanRemove.innerHTML= '&#128233;new' 
+        
+        spanRemove.style=`
+        position: absolute;
+        bottom: 0;
+        left: 65%;
+        cursor: pointer;
+        transform: translate(-50%);
+        font-size:1.2rem;
+        margin-bottom:-5px;
+        border:double firebrick;
+        background-color:green;
+        -webkit-text-fill-color:azure;
+        -webkit-text-fill-color:azure;
+        `
+        span.style=`
+        font-size:1.5rem;
+        margin-bottom:-5px;
+        border:double firebrick;
+        background-color:#444;
+        -webkit-text-fill-color:azure;
+        -webkit-text-fill-color:azure;
+        
+        `
+        
+
+      span.addEventListener("click", function(e){
+        article.classList.toggle("article-open")
+        
+               
+      if(x===3){
+        span.innerHTML='<em>&#128236; click to Close</em>'//read this article
+        article.style=`
+        font-weight:bolder;
+         `
+       x=2
+      }else{
+        
+        span.innerHTML='&#128235;Click to Expand'//didnt read article
+        article.style=`
+       background-color:tan;
+        `
+        spanRemove.innerHTML= '&#128209;read'
+        spanRemove.style=`
+        position: absolute;
+        bottom: 0;
+        left: 65%;
+        cursor: pointer;
+        transform: translate(-50%);
+        font-size:1.2rem;
+        margin-bottom:-5px;
+        border:double green;
+        background-color:firebrick;
+        -webkit-text-fill-color:azure;
+        -webkit-text-fill-color:azure;
+        `
+        spanRemove.addEventListener("click", function(e){
+          e.target.parentNode.remove()
+        })
+        x=3
+      }
+      })
+
+      
+
+
+        return article
+}
+
+
+const artiz = document.querySelector(".articles")
+data.forEach(comp=>{
+
+  artiz.append(createArticle(comp))
+})
+
+
+//add worthy...try it
+// menu$.append(createArticle({
+//   title:'new jont',
+//   date:'idk man...the 4th',
+//   firstParagraph:'1st p',  
+//   secondParagraph:'2nd p',  
+//   thirdParagraph:'3rd p',
+// }))
+
+function theForm(){let artiForm = document.createElement("div")
+artiForm.classList.add("formBox")
+
+let form = document.createElement("form")
+form.classList.add("form")
+
+let caption = document.createElement("h3")  
+let input1 = document.createElement("input")  
+let input2 = document.createElement("input")  
+let txtArea1 = document.createElement("textarea")
+let txtArea2 = document.createElement("textarea")
+let txtArea3 = document.createElement("textarea")
+
+let form_btn = document.createElement("button")
+
+artiForm.append(form)
+
+form.appendChild(caption)
+form.appendChild(input1)
+form.appendChild(input2)
+form.appendChild(txtArea1)
+form.appendChild(txtArea2)
+form.appendChild(txtArea3)
+form.appendChild(form_btn)
+
+artiForm.style=`
+position:absolute;
+width:100%;
+display:flex;
+height:100%;
+justify-content:center;
+align-items:center;
+padding-bottom:10px;
+`
+form.style=`
+flex:1;
+display:flex;
+width:350px;
+flex-direction:column;
+justify-content:space-between;
+align-items:center;
+grid-gap:10px;
+
+`
+
+
+caption.style=`
+color:#fff;
+
+`
+
+input1.style=`
+flex:1;
+font-weight:bolder;
+color:#fff;
+background-color:rgba(0,0,0,0);
+border:none;
+border-left:dashed #000;
+border-bottom:dashed #000;
+padding:1%;
+height:100px;
+`
+input2.style=`
+flex:1;
+font-weight:bolder;
+color:#fff;
+background-color:rgba(0,0,0,0);
+border:none;
+border-left:dashed #000;
+border-bottom:dashed #000;
+padding:1%;
+height:100px;
+`
+txtArea1.style=`
+flex:1;
+font-weight:bolder;
+color:#fff;
+background-color:rgba(0,0,0,0);
+border:dashed #000;
+padding:1%;
+height:200px;
+`
+txtArea2.style=`
+flex:1;
+font-weight:bolder;
+color:#fff;
+background-color:rgba(0,0,0,0);
+border:dashed #000;
+padding:1%;
+height:200px;
+`
+txtArea3.style=`
+flex:1;
+font-weight:bolder;
+color:#fff;
+background-color:rgba(0,0,0,0);
+border:dashed #000;
+padding:1%;
+height:200px;
+`
+
+form_btn.style=`
+flex:1;
+font-weight:bolder;
+color:#fff;
+background-color:rgba(0,0,0,0);
+border:dashed #000;
+padding:1%;
+height:200px;
+cursor:pointer;
+`
+
+let clientArticleCreator = (obj) =>{
+  
+}
+
+
+form_btn.addEventListener("click",function(e){
+  e.preventDefault()
+
+  artiz.append(createArticle({
+  title:input1.value,
+  date:input2.value,
+  firstParagraph:txtArea1.value, 
+  secondParagraph:txtArea2.value,  
+  thirdParagraph:txtArea3.value,
+}))
+
+input1.value=""
+input2.value=""
+txtArea1.value=""
+txtArea2.value=""
+txtArea3.value=""
+
+
+
+})
+
+caption.textContent='Add a Post'
+input1.placeholder='"TITLE" goes here'
+input2.placeholder='"DATE" goes here'
+txtArea1.placeholder='"firstParagraph" goes here'
+txtArea2.placeholder='"secondParagraph" goes here'
+txtArea3.placeholder='"thirdParagraph" goes here'
+form_btn.textContent='POST'
+
+return artiForm
+
+}
+
+
+document.querySelector("body").appendChild(theForm())
+
+

@@ -33,3 +33,60 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+
+function createMenuComp(ulArray){
+let menu = document.createElement("div")//creating menu div
+
+let uList = document.createElement("ul")//creating unordered list tag
+
+menu.append(uList)//nesting th unordered list in the menu class tag
+
+ulArray.forEach(li=>{//pushing each li link in the unordered list tag
+  uList.innerHTML+=`<li>${li}</li>`
+})
+
+menu.classList.add("menu")//adding class 'menu' to parent menu tag "menu"
+
+const menu_btn = document.querySelector(".menu-button")
+
+
+
+
+
+menu_btn.addEventListener("click", function(event){
+    event.preventDefault()
+    event.stopPropagation()
+
+   menu.classList.toggle("menu--open")
+})
+
+
+if(document.querySelector(".menu")){
+
+document.querySelector(".menu").addEventListener("blur", function(event){
+  // event.preventDefault()
+  // event.stopPropagation()
+
+ menu.classList.toggle("menu--open")
+})
+
+}
+
+
+
+return menu
+
+
+}
+
+
+
+const header = document.querySelector("body")
+header.appendChild(createMenuComp(menuItems))//adding to the dom
+
+
+//styles for the pages with "you will not be writing any CSS in this file" message
+
+document.querySelector("html").style='background-color:#004D40;'
+document.querySelector("body").style='background-color:#004D40;'
